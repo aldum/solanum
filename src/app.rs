@@ -24,6 +24,7 @@ use glib::WeakRef;
 
 use glib::subclass::prelude::*;
 use gtk::subclass::prelude::*;
+use libadwaita::prelude::*;
 use libadwaita::subclass::prelude::*;
 
 use std::cell::OnceCell;
@@ -213,7 +214,7 @@ impl SolanumApplication {
     fn show_preferences(&self) {
         let imp = self.imp();
         let window = self.get_main_window();
-        let preferences_window = SolanumPreferencesWindow::new(&window, &imp.settings);
-        preferences_window.present();
+        let preferences_window = SolanumPreferencesWindow::new(&imp.settings);
+        preferences_window.present(Some(&window));
     }
 }
