@@ -1,4 +1,4 @@
-// preferences_window.rs
+// preferences_dialog.rs
 //
 // Copyright 2021 Christopher Davis <christopherdavis@gnome.org>
 //
@@ -28,8 +28,8 @@ mod imp {
     use super::*;
 
     #[derive(Debug, Default, CompositeTemplate)]
-    #[template(resource = "/org/gnome/Solanum/preferences-window.ui")]
-    pub struct SolanumPreferencesWindow {
+    #[template(resource = "/org/gnome/Solanum/preferences-dialog.ui")]
+    pub struct SolanumPreferencesDialog {
         #[template_child]
         pub lap_spin: TemplateChild<libadwaita::SpinRow>,
         #[template_child]
@@ -44,9 +44,9 @@ mod imp {
     }
 
     #[glib::object_subclass]
-    impl ObjectSubclass for SolanumPreferencesWindow {
-        const NAME: &'static str = "SolanumPreferencesWindow";
-        type Type = super::SolanumPreferencesWindow;
+    impl ObjectSubclass for SolanumPreferencesDialog {
+        const NAME: &'static str = "SolanumPreferencesDialog";
+        type Type = super::SolanumPreferencesDialog;
         type ParentType = libadwaita::PreferencesDialog;
 
         fn class_init(klass: &mut Self::Class) {
@@ -58,18 +58,18 @@ mod imp {
         }
     }
 
-    impl ObjectImpl for SolanumPreferencesWindow {}
-    impl WidgetImpl for SolanumPreferencesWindow {}
-    impl AdwDialogImpl for SolanumPreferencesWindow {}
-    impl PreferencesDialogImpl for SolanumPreferencesWindow {}
+    impl ObjectImpl for SolanumPreferencesDialog {}
+    impl WidgetImpl for SolanumPreferencesDialog {}
+    impl AdwDialogImpl for SolanumPreferencesDialog {}
+    impl PreferencesDialogImpl for SolanumPreferencesDialog {}
 }
 
 glib::wrapper! {
-    pub struct SolanumPreferencesWindow(ObjectSubclass<imp::SolanumPreferencesWindow>)
+    pub struct SolanumPreferencesDialog(ObjectSubclass<imp::SolanumPreferencesDialog>)
         @extends gtk::Widget, libadwaita::Dialog, libadwaita::PreferencesDialog;
 }
 
-impl SolanumPreferencesWindow {
+impl SolanumPreferencesDialog {
     pub fn new(settings: &gio::Settings) -> Self {
         let obj = glib::Object::builder::<Self>().build();
 

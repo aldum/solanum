@@ -31,7 +31,7 @@ use std::cell::OnceCell;
 
 use crate::config;
 use crate::i18n::i18n;
-use crate::preferences_window::SolanumPreferencesWindow;
+use crate::preferences_dialog::SolanumPreferencesDialog;
 use crate::window::SolanumWindow;
 
 mod imp {
@@ -214,7 +214,7 @@ impl SolanumApplication {
     fn show_preferences(&self) {
         let imp = self.imp();
         let window = self.get_main_window();
-        let preferences_window = SolanumPreferencesWindow::new(&imp.settings);
-        preferences_window.present(Some(&window));
+        let preferences_dialog = SolanumPreferencesDialog::new(&imp.settings);
+        preferences_dialog.present(Some(&window));
     }
 }
