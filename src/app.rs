@@ -24,6 +24,7 @@ use glib::WeakRef;
 
 use glib::subclass::prelude::*;
 use gtk::subclass::prelude::*;
+use libadwaita::prelude::*;
 use libadwaita::subclass::prelude::*;
 
 use std::cell::OnceCell;
@@ -159,7 +160,7 @@ impl SolanumApplication {
         let window = self.get_main_window();
         let developers = &["Christopher Davis <christopherdavis@gnome.org>"];
 
-        let about = libadwaita::AboutWindow::from_appdata(
+        let about = libadwaita::AboutDialog::from_appdata(
             &format!("/org/gnome/Solanum/{}.appdata.xml", config::APP_ID),
             if !config::APP_ID.ends_with("Devel") {
                 Some(config::VERSION)
@@ -204,10 +205,7 @@ impl SolanumApplication {
             ],
         );
 
-        about.set_transient_for(Some(&window));
-        about.set_modal(true);
-
-        about.present();
+        about.present(Some(&window));
     }
 
     fn show_preferences(&self) {
