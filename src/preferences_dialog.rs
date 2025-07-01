@@ -1,4 +1,4 @@
-// preferences_window.rs
+// preferences_dialog.rs
 //
 // Copyright 2021 Christopher Davis <christopherdavis@gnome.org>
 //
@@ -17,10 +17,9 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
 use gtk::CompositeTemplate;
 use gtk::{gio, glib};
+use libadwaita::prelude::*;
 use libadwaita::subclass::prelude::*;
 
 use std::cell::OnceCell;
@@ -29,8 +28,8 @@ mod imp {
     use super::*;
 
     #[derive(Debug, Default, CompositeTemplate)]
-    #[template(resource = "/org/gnome/Solanum/preferences-window.ui")]
-    pub struct SolanumPreferencesWindow {
+    #[template(resource = "/org/gnome/Solanum/preferences-dialog.ui")]
+    pub struct SolanumPreferencesDialog {
         #[template_child]
         pub lap_spin: TemplateChild<libadwaita::SpinRow>,
         #[template_child]
@@ -45,10 +44,10 @@ mod imp {
     }
 
     #[glib::object_subclass]
-    impl ObjectSubclass for SolanumPreferencesWindow {
-        const NAME: &'static str = "SolanumPreferencesWindow";
-        type Type = super::SolanumPreferencesWindow;
-        type ParentType = libadwaita::PreferencesWindow;
+    impl ObjectSubclass for SolanumPreferencesDialog {
+        const NAME: &'static str = "SolanumPreferencesDialog";
+        type Type = super::SolanumPreferencesDialog;
+        type ParentType = libadwaita::PreferencesDialog;
 
         fn class_init(klass: &mut Self::Class) {
             Self::bind_template(klass);
@@ -59,25 +58,20 @@ mod imp {
         }
     }
 
-    impl ObjectImpl for SolanumPreferencesWindow {}
-    impl WidgetImpl for SolanumPreferencesWindow {}
-    impl WindowImpl for SolanumPreferencesWindow {}
-    impl AdwWindowImpl for SolanumPreferencesWindow {}
-    impl PreferencesWindowImpl for SolanumPreferencesWindow {}
+    impl ObjectImpl for SolanumPreferencesDialog {}
+    impl WidgetImpl for SolanumPreferencesDialog {}
+    impl AdwDialogImpl for SolanumPreferencesDialog {}
+    impl PreferencesDialogImpl for SolanumPreferencesDialog {}
 }
 
 glib::wrapper! {
-    pub struct SolanumPreferencesWindow(ObjectSubclass<imp::SolanumPreferencesWindow>)
-        @extends gtk::Widget, gtk::Window, libadwaita::Window, libadwaita::PreferencesWindow,
-        @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Native,
-        gtk::Root, gtk::ShortcutManager;
+    pub struct SolanumPreferencesDialog(ObjectSubclass<imp::SolanumPreferencesDialog>)
+        @extends gtk::Widget, libadwaita::Dialog, libadwaita::PreferencesDialog;
 }
 
-impl SolanumPreferencesWindow {
-    pub fn new<W: IsA<gtk::Window>>(parent: &W, settings: &gio::Settings) -> Self {
-        let obj = glib::Object::builder::<Self>()
-            .property("transient-for", Some(parent))
-            .build();
+impl SolanumPreferencesDialog {
+    pub fn new(settings: &gio::Settings) -> Self {
+        let obj = glib::Object::builder::<Self>().build();
 
         let imp = obj.imp();
 

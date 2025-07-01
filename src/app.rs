@@ -24,13 +24,14 @@ use glib::WeakRef;
 
 use glib::subclass::prelude::*;
 use gtk::subclass::prelude::*;
+use libadwaita::prelude::*;
 use libadwaita::subclass::prelude::*;
 
 use std::cell::OnceCell;
 
 use crate::config;
 use crate::i18n::i18n;
-use crate::preferences_window::SolanumPreferencesWindow;
+use crate::preferences_dialog::SolanumPreferencesDialog;
 use crate::window::SolanumWindow;
 
 mod imp {
@@ -213,7 +214,7 @@ impl SolanumApplication {
     fn show_preferences(&self) {
         let imp = self.imp();
         let window = self.get_main_window();
-        let preferences_window = SolanumPreferencesWindow::new(&window, &imp.settings);
-        preferences_window.present();
+        let preferences_dialog = SolanumPreferencesDialog::new(&imp.settings);
+        preferences_dialog.present(Some(&window));
     }
 }

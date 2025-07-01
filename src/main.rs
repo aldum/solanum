@@ -24,7 +24,7 @@ use gtk::{gio, glib};
 mod app;
 mod config;
 mod i18n;
-mod preferences_window;
+mod preferences_dialog;
 mod timer;
 mod window;
 
