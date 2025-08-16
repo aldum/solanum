@@ -1,5 +1,6 @@
-data/org.gnome.Solanum.appdata.xml.in.in
+# List of source files containing translatable strings.
 data/org.gnome.Solanum.desktop.in.in
+data/org.gnome.Solanum.metainfo.xml.in.in
 data/org.gnome.Solanum.gschema.xml
 data/gtk/help-overlay.blp
 data/ui/preferences-window.blp
