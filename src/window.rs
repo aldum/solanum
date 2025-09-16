@@ -332,9 +332,15 @@ impl SolanumWindow {
     }
 
     fn play_sound(&self, uri: &str) {
-        let player = &self.imp().player;
-        player.set_uri(Some(uri));
-        player.play();
+        let app = self.application();
+        let settings = app.gsettings();
+        let on = settings.boolean("sound-on");
+
+        if on {
+            let player = &self.imp().player;
+            player.set_uri(Some(uri));
+            player.play();
+        }
     }
 
     fn send_notifcation(&self, lap_type: LapType) {

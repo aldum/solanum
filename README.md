@@ -10,7 +10,7 @@ Solanum is a [pomodoro timer](https://en.wikipedia.org/wiki/Pomodoro_Technique) 
 
 ### GNOME Builder (Recommended)
 
-GNOME Builder is the environment used for developing this 
+GNOME Builder is the environment used for developing this
 application. It can use Flatpak manifests to create a consistent building and running environment cross-distro. Thus, it is highly
 recommended you use it.
 
@@ -36,8 +36,8 @@ ninja -C _build
 ## Installation
 
 Depending on how you want it installed instructions can differ. If you
-used GNOME Builder to build it, clicking the bar at the top window will 
-open a submenu with "Export Bundle". This will create a flatpak bundle, 
+used GNOME Builder to build it, clicking the bar at the top window will
+open a submenu with "Export Bundle". This will create a flatpak bundle,
 which can be installed on any system that supports flatpak.
 
 If you used the commands in the "Manual" section, or want to package for
@@ -45,7 +45,7 @@ distribution, you can use the following:
 
 ```bash
 # Can be changed with the environment variable $DEST_DIR; defaults to prefix
-ninja -C _build install 
+ninja -C _build install
 ```
 
 ## Conduct

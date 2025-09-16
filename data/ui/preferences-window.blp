@@ -57,5 +57,13 @@ template $SolanumPreferencesWindow : Adw.PreferencesWindow {
         title: _("Fullscreen During Breaks");
       }
     }
+
+    Adw.PreferencesGroup {
+      title: _("Sound");
+      Adw.SwitchRow sound_on {
+        title: _("Play chimes on time's up");
+      }
+    }
+
   }
 }

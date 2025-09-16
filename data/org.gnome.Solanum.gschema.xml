@@ -21,5 +21,10 @@
       <default>false</default>
       <summary>Whether the window should fullscreen during breaks.</summary>
     </key>
+    <key name="sound-on" type="b">
+      <default>false</default>
+      <summary>Whether the application should play sound notifications.</summary>
+    </key>
+
   </schema>
 </schemalist>
